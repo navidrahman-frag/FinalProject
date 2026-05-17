@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,9 +41,7 @@ namespace FinalProject
             string password = textBox5.Text.Trim();
             string role = comboBox1.Text;
 
-            if (string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(password) ||
-                string.IsNullOrWhiteSpace(role))
+            if (string.IsNullOrWhiteSpace(email) ||string.IsNullOrWhiteSpace(password) ||string.IsNullOrWhiteSpace(role))
             {
                 MessageBox.Show("Please fill all fields!");
                 return;
@@ -68,7 +66,6 @@ namespace FinalProject
                     {
                         int userId = Convert.ToInt32(reader["UserID"]);
                         string userType = reader["UserType"].ToString();
-
                         reader.Close();
 
                         MessageBox.Show("Login Successful!");
@@ -76,13 +73,69 @@ namespace FinalProject
                        
                         if (userType == "Student")
                         {
-                            Form4 studentDashboard = new Form4();
-                            studentDashboard.Show();
+                            int realStudentID = -1;
+                            string studentQuery = "SELECT StudentID FROM Student WHERE UserID = @UserID";
+                            using (SqlCommand studentCmd = new SqlCommand(studentQuery, con))
+                            {
+                                studentCmd.Parameters.AddWithValue("@UserID", userId);
+                                object result = studentCmd.ExecuteScalar();
+                                if (result != null)
+                                {
+                                    realStudentID = Convert.ToInt32(result);
+                                }
+                            }
+
+                            if (realStudentID != -1)
+                            {
+                                Form4 studentDashboard = new Form4(realStudentID);
+                                studentDashboard.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Student profile not found! The UserID (" + userId + ") is not linked to any StudentID in the Student table. Please register a new student account using the Registration Form to fix this.");
+                            }
+                        }
+                        else if (userType == "Super Admin")
+                        {
+                            Form10 superAdminDashboard = new Form10();
+                            superAdminDashboard.Show();
                             this.Hide();
+                        }
+                        else if (userType == "Admin")
+                        {
+                            Form5 adminDashboard = new Form5();
+                            adminDashboard.Show();
+                            this.Hide();
+                        }
+                        else if (userType == "Teacher")
+                        {
+                            int realTeacherID = -1;
+                            string teacherQuery = "SELECT TeacherID FROM Teacher WHERE UserID = @UserID";
+                            using (SqlCommand teacherCmd = new SqlCommand(teacherQuery, con))
+                            {
+                                teacherCmd.Parameters.AddWithValue("@UserID", userId);
+                                object result = teacherCmd.ExecuteScalar();
+                                if (result != null)
+                                {
+                                    realTeacherID = Convert.ToInt32(result);
+                                }
+                            }
+
+                            if (realTeacherID != -1)
+                            {
+                                Form6 teacherDashboard = new Form6(realTeacherID);
+                                teacherDashboard.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Teacher profile not found for this user account!");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Only Students can access this dashboard!");
+                            MessageBox.Show("Invalid Users!");
                         }
                     }
                     else
@@ -93,7 +146,7 @@ namespace FinalProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -121,14 +174,10 @@ namespace FinalProject
 
         }
 
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }
+
     }
 }

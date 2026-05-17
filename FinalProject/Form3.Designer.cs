@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -273,9 +274,9 @@
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(12, 499);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(185, 20);
+            this.label12.Size = new System.Drawing.Size(167, 20);
             this.label12.TabIndex = 23;
-            this.label12.Text = "Department            :";
+            this.label12.Text = "Department         :";
             // 
             // label13
             // 
@@ -329,7 +330,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::FinalProject.Properties.Resources.download__2_;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(724, 428);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(53, 50);
@@ -339,7 +340,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::FinalProject.Properties.Resources.download__1_;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(12, 428);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(68, 50);
@@ -349,7 +350,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::FinalProject.Properties.Resources.download;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(13, 172);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(68, 50);
@@ -359,7 +360,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::FinalProject.Properties.Resources.Screenshot_2026_04_29_223501;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1107, 122);
@@ -377,17 +378,17 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(220, 547);
+            this.textBox8.Location = new System.Drawing.Point(238, 547);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(134, 22);
+            this.textBox8.Size = new System.Drawing.Size(116, 22);
             this.textBox8.TabIndex = 31;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(220, 603);
+            this.textBox9.Location = new System.Drawing.Point(238, 603);
             this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(135, 22);
+            this.textBox9.Size = new System.Drawing.Size(117, 22);
             this.textBox9.TabIndex = 32;
             this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 

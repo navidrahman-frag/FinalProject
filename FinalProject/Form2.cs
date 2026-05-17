@@ -129,7 +129,7 @@ namespace FinalProject
 
                     int userId = Convert.ToInt32(cmdUser.ExecuteScalar());
 
-                    string insertStudent = @"INSERT INTO Student(FirstName, LastName, Phone, Adress, UserID, Gender, MaritalStatus)VALUES(@FirstName, @LastName, @Phone, @Adress, @UserID, @Gender, @MaritalStatus)";
+                    string insertStudent = @"INSERT INTO Student(FirstName, LastName, Phone, Adress, UserID, Gender, MaritalStatus, CollegeName, UniversityName, AlternativeNo, CoreSubject)VALUES(@FirstName, @LastName, @Phone, @Adress, @UserID, @Gender, @MaritalStatus, @CollegeName, @UniversityName, @AlternativeNo, @CoreSubject)";
 
                     SqlCommand cmdStudent = new SqlCommand(insertStudent, con, transaction);
 
@@ -140,12 +140,17 @@ namespace FinalProject
                     cmdStudent.Parameters.AddWithValue("@UserID", userId);
                     cmdStudent.Parameters.AddWithValue("@Gender", gender);
                     cmdStudent.Parameters.AddWithValue("@MaritalStatus", maritalStatus);
+                    cmdStudent.Parameters.AddWithValue("@CollegeName", collegeName);
+                    cmdStudent.Parameters.AddWithValue("@UniversityName", universityName);
+                    cmdStudent.Parameters.AddWithValue("@AlternativeNo", alternativeNo);
+                    cmdStudent.Parameters.AddWithValue("@CoreSubject", coreSubject);
 
                     cmdStudent.ExecuteNonQuery();
 
                     transaction.Commit();
 
                     MessageBox.Show("Student Registered Successfully!");
+                    ClearFields();
                 }
                 catch (Exception ex)
                 {
@@ -212,6 +217,29 @@ namespace FinalProject
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ClearFields()
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox7.Clear();
+            textBox8.Clear();
+            textBox9.Clear();
+            textBox10.Clear();
+            textBox11.Clear();
+            textBox12.Clear();
+            textBox6.Clear();
+
+            comboBox1.SelectedIndex = -1;
+            comboBox2.SelectedIndex = -1;
         }
     }
 }
